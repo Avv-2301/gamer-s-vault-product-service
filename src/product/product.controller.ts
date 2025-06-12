@@ -1,9 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
+import { ProductService } from './product.service';
 
-@Controller('products')
+@Controller('products') //prefix all routes with /products
 export class ProductController {
+  constructor(private readonly productService: ProductService){}
+
   @Get()
-  findAll() {
-    return ['Product 1', 'Product 2', 'Product 3'];
+  getAllProducts() {
+    return this.productService.getAllProducts();
   }
 }
